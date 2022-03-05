@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../CSS/styles.css">
+		<title>DOCUMENTATION for My movie API Website</title>
+	</head>
+	<body>
+		<div class="container-documentation">
+			<header>
+				<div>
+				<h1>DOCUMENTATION </h1>
+				<p>API documentation for Fernando's myFlix</p>
+				</div>
+				<nav>
+					<ul>
+						<a href="../index.html"><li>Home</li></a>
+						<a href="documentation.html" class = "navActive"><li >Documentation</li></a>
+					</ul>
+				</nav>
+			</header>
+			<main>
+				<h2>URL Endpoints</h2>
+				<div>
+					<h3>Movie List</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Return a list of my favorite movies upon request</td>
+						  <td>/movies/</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>
+							  <div class="left-align">A JSON object holding data about movies, structured like:
+							  <br> <br>
+							  <div class="json-object">
+							  { <br>
+								&emsp;ID: "M20", <br>
+								&emsp;title: 'INSIDE',<br>
+								&emsp;movieYear: 2021,<br>
+								&emsp;directors: [<br>
+								&emsp;&emsp;{<br>
+									&emsp;&emsp;&emsp;directorID: "D20",<br>
+									&emsp;&emsp;&emsp;directorName: "Bo Burnham",<br>
+									&emsp;&emsp;&emsp;directorData: {<br>
+										&emsp;&emsp;&emsp;&emsp;directorBio: "A short bio.",<br>
+										&emsp;&emsp;&emsp;&emsp;directorYOB: 1990,<br>
+										&emsp;&emsp;&emsp;&emsp;directorYOD: 2030,<br>
+										&emsp;&emsp;&emsp;&emsp;directorPhoto: "assets/bo_burnham.jpg",<br>
+										&emsp;&emsp;&emsp;&emsp;}<br>
+										&emsp;&emsp;&emsp;}],<br>
+										&emsp;movieDescription: "A brief description",<br>
+										&emsp;movieGenres: ["Comedy", "Drama", "Music"],<br>
+										&emsp;movieImage: "assets/bo.jpg",<br>
+										&emsp;featured: true<br>
+							} </div>
+							</div>
+						  </td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>ID</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Return a movie ID on search</td>
+						  <td>/movies/:ID</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>An alpha-numberic database code associated with the movie.</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Title</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Return a movie title on search</td>
+						  <td>/movies/:title</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A string containing the movie's title.</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Movie Release Year</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Return a movie's year of release on search</td>
+						  <td>/movies/:title/movieYear</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A number containing the year the movie was released.</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Movie Description</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie's description.</td>
+						  <td>/movies/:title/movieDescription</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A string containing the movie's description.</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Movie Main Image</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie's theatrical poster image.</td>
+						  <td>/movies/:title/movieImage</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A string containing the URL or relative path containing the movie's theatrical poster in .jpg (or .jpeg) format.</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Featured</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie's featured tag.</td>
+						  <td>/movies/:title/featured</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A boolean result on whether the movie is featured (true) or not (false).</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Director(s)</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get movie's director(s).</td>
+						  <td>/movies/:directors</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>
+							<div class="left-align">A JSON object holding data about the movie's director(s) in an array, structured like:
+							<br> <br>
+							<div class="json-object">
+							{ <br>
+							   &emsp;directors: [<br>
+							   &emsp;&emsp;{<br>
+								   &emsp;&emsp;&emsp;directorID: "D20",<br>
+								   &emsp;&emsp;&emsp;directorName: "Bo Burnham",<br>
+								   &emsp;&emsp;&emsp;directorData: {<br>
+									   &emsp;&emsp;&emsp;&emsp;directorBio: "A short bio.",<br>
+									   &emsp;&emsp;&emsp;&emsp;directorYOB: 1990,<br>
+									   &emsp;&emsp;&emsp;&emsp;directorYOD: 2030,<br>
+									   &emsp;&emsp;&emsp;&emsp;directorPhoto: "assets/bo_burnham.jpg",<br>
+									   &emsp;&emsp;&emsp;&emsp;}<br>
+									   &emsp;&emsp;&emsp;}],<br>
+						   } </div>
+						   </div>
+						</td>
+						</tr>
+					   </table>
+				</div>
+				<!-- <div>
+					<h3>Director ID(s)</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie's director(s) ID</td>
+						  <td>/movies/:title/directors/directorID/</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>An alpha-numberic database code associated with the movie's director(s).</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Director Name(s)</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie's director(s) name(s)</td>
+						  <td>/movies/:title/directors/directorName/</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A string containing the name of the movie's director from ID.</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Director Data</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie's director(s) name(s)</td>
+						  <td>/movies/:title/directors/directorData/</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td><div class="left-align">A JSON object holding data about the movie's requested director structured like:
+							<br> <br>
+							<div class="json-object">
+							{ <br>
+									   &emsp;directorBio: "A short bio.",<br>
+									   &emsp;directorYOB: 1990,<br>
+									   &emsp;directorYOD: 2030,<br>
+									   &emsp;directorPhoto: "assets/bo_burnham.jpg",<br>
+									   &emsp;}<br>
+						   </div></td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Director Bio(s)</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie's director(s) name(s)</td>
+						  <td>/movies/:title/directors/directorData/directorBio/</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A string containing the selected director's biography.</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Director Year of Birth(s)</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie director's Year of Birth</td>
+						  <td>/movies/:title/directors/directorData/directorYOB/</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A number containing the requested director's year of birth</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Director Year of Deaths(s)</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie director's Year of Death</td>
+						  <td>/movies/:title/directors/directorData/directorYOD/</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A number containing the requested director's year of death</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Director Photos(s)</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie director's photo</td>
+						  <td>/movies/:title/directors/directorData/directorPhoto/</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A string containing the URL or relative path containing the director's image in .jpg (or .jpeg) format. </td>
+						</tr>
+					   </table>
+				</div> -->
+				<div>
+					<h3>Genres</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a movie's theatrical poster image.</td>
+						  <td>/genres</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td><div class="left-align">An array containing JSON objects holding data about potential genres structured like:
+							<br> <br>
+							<div class="json-object">
+							{ <br>
+									   &emsp;genre: "Animation.",<br>
+									   &emsp;genreDescription: "A brief genre description."<br>
+									   &emsp;}<br>
+						   </div></td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Genre Names</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a genre.</td>
+						  <td>/genres/:genre</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A string containing the genre name.</td>
+						</tr>
+					   </table>
+				</div>
+				<div>
+					<h3>Genre Names</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get a genre.</td>
+						  <td>/genres/:genreDescription</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>A string containing the description of the requested genre.</td>
+						</tr>
+					   </table>
+				</div>
+			</main>
+			<footer>
+				<p>(c) myFlix, 2022.</p>
+			</footer>
+	</div>
+	</body>
+</html>
