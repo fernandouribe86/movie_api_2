@@ -41,24 +41,22 @@
 							  <br> <br>
 							  <div class="json-object">
 							  { <br>
-								&emsp;ID: "M20", <br>
-								&emsp;title: 'INSIDE',<br>
-								&emsp;movieYear: 2021,<br>
+								&emsp;_id: ObjectId("123456"), <br>
+								&emsp;Title: 'INSIDE',<br>
 								&emsp;directors: [<br>
 								&emsp;&emsp;{<br>
-									&emsp;&emsp;&emsp;directorID: "D20",<br>
-									&emsp;&emsp;&emsp;directorName: "Bo Burnham",<br>
-									&emsp;&emsp;&emsp;directorData: {<br>
-										&emsp;&emsp;&emsp;&emsp;directorBio: "A short bio.",<br>
-										&emsp;&emsp;&emsp;&emsp;directorYOB: 1990,<br>
-										&emsp;&emsp;&emsp;&emsp;directorYOD: 2030,<br>
-										&emsp;&emsp;&emsp;&emsp;directorPhoto: "assets/bo_burnham.jpg",<br>
+									&emsp;&emsp;&emsp;_id: ObjectId("1028432"),<br>
+									&emsp;&emsp;&emsp;Name: "Bo Burnham",<br>
+										&emsp;&emsp;&emsp;Bio: "A short bio.",<br>
+										&emsp;&emsp;&emsp;Birth: "1990",<br>
+										&emsp;&emsp;&emsp;Death: "2030",<br>
 										&emsp;&emsp;&emsp;&emsp;}<br>
 										&emsp;&emsp;&emsp;}],<br>
-										&emsp;movieDescription: "A brief description",<br>
-										&emsp;movieGenres: ["Comedy", "Drama", "Music"],<br>
-										&emsp;movieImage: "assets/bo.jpg",<br>
-										&emsp;featured: true<br>
+										&emsp;Description: "A brief description",<br>
+										&emsp;Genres: [ObjectId("10283432"), ObjectId("10283235")],<br>
+										&emsp;ImagePath: "assets/bo.jpg",<br>
+										&emsp;Actors: [ObjectId("2341234")]
+										&emsp;Featured: true<br>
 							} </div>
 							</div>
 						  </td>
@@ -77,7 +75,7 @@
 						</tr>
 						<tr>
 						  <td>Return a movie ID on search</td>
-						  <td>/movies/:ID</td>
+						  <td>/movies/_id</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>An alpha-numberic database code associated with the movie.</td>
@@ -96,29 +94,10 @@
 						</tr>
 						<tr>
 						  <td>Return a movie title on search</td>
-						  <td>/movies/:title</td>
+						  <td>/movies/:Title</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>A string containing the movie's title.</td>
-						</tr>
-					   </table>
-				</div>
-				<div>
-					<h3>Movie Release Year</h3>
-					<table class = "documentation-table">
-						<tr>
-						  <th>Request</th>
-						  <th>URL</th>
-						  <th>HTTP Method</th>
-						  <th>Request Body Data Format</th>
-						  <th>Response Body Data Format</th>
-						</tr>
-						<tr>
-						  <td>Return a movie's year of release on search</td>
-						  <td>/movies/:title/movieYear</td>
-						  <td>GET</td>
-						  <td>None</td>
-						  <td>A number containing the year the movie was released.</td>
 						</tr>
 					   </table>
 				</div>
@@ -134,7 +113,7 @@
 						</tr>
 						<tr>
 						  <td>Get a movie's description.</td>
-						  <td>/movies/:title/movieDescription</td>
+						  <td>/movies/:Title/Description</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>A string containing the movie's description.</td>
@@ -153,7 +132,7 @@
 						</tr>
 						<tr>
 						  <td>Get a movie's theatrical poster image.</td>
-						  <td>/movies/:title/movieImage</td>
+						  <td>/movies/:Title/ImagePath</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>A string containing the URL or relative path containing the movie's theatrical poster in .jpg (or .jpeg) format.</td>
@@ -172,7 +151,7 @@
 						</tr>
 						<tr>
 						  <td>Get a movie's featured tag.</td>
-						  <td>/movies/:title/featured</td>
+						  <td>/movies/:Title/Featured</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>A boolean result on whether the movie is featured (true) or not (false).</td>
@@ -191,7 +170,7 @@
 						</tr>
 						<tr>
 						  <td>Get movie's director(s).</td>
-						  <td>/movies/:directors</td>
+						  <td>/Movies/:Directors</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>
@@ -201,15 +180,12 @@
 							{ <br>
 							   &emsp;directors: [<br>
 							   &emsp;&emsp;{<br>
-								   &emsp;&emsp;&emsp;directorID: "D20",<br>
-								   &emsp;&emsp;&emsp;directorName: "Bo Burnham",<br>
-								   &emsp;&emsp;&emsp;directorData: {<br>
-									   &emsp;&emsp;&emsp;&emsp;directorBio: "A short bio.",<br>
-									   &emsp;&emsp;&emsp;&emsp;directorYOB: 1990,<br>
-									   &emsp;&emsp;&emsp;&emsp;directorYOD: 2030,<br>
-									   &emsp;&emsp;&emsp;&emsp;directorPhoto: "assets/bo_burnham.jpg",<br>
-									   &emsp;&emsp;&emsp;&emsp;}<br>
-									   &emsp;&emsp;&emsp;}],<br>
+								   &emsp;&emsp;&emsp;_id: ObjectId("1028432"),<br>
+								   &emsp;&emsp;&emsp;Name: "Bo Burnham",<br>
+									   &emsp;&emsp;&emsp;Bio: "A short bio.",<br>
+									   &emsp;&emsp;&emsp;Birth: "1990",<br>
+									   &emsp;&emsp;&emsp;Death: "2030",<br>
+									   &emsp;&emsp;&emsp;<br>
 						   } </div>
 						   </div>
 						</td>
