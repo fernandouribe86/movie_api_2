@@ -22,7 +22,8 @@
 			<main>
 				<h2>URL Endpoints</h2>
 				<div>
-					<h3>Movie List</h3>
+					<h2 class="db-name">db.movies</h2>
+					<h3>Movies List</h3>
 					<table class = "documentation-table">
 						<tr>
 						  <th>Request</th>
@@ -32,8 +33,8 @@
 						  <th>Response Body Data Format</th>
 						</tr>
 						<tr>
-						  <td>Return a list of my favorite movies upon request</td>
-						  <td>/movies/</td>
+						  <td>Return a list of movies upon request</td>
+						  <td>/movies</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>
@@ -63,7 +64,7 @@
 						</tr>
 					   </table>
 				</div>
-				<div>
+				<!-- <div>
 					<h3>ID</h3>
 					<table class = "documentation-table">
 						<tr>
@@ -81,7 +82,7 @@
 						  <td>An alpha-numberic database code associated with the movie.</td>
 						</tr>
 					   </table>
-				</div>
+				</div> -->
 				<div>
 					<h3>Title</h3>
 					<table class = "documentation-table">
@@ -101,7 +102,7 @@
 						</tr>
 					   </table>
 				</div>
-				<div>
+				<!-- <div>
 					<h3>Movie Description</h3>
 					<table class = "documentation-table">
 						<tr>
@@ -157,8 +158,10 @@
 						  <td>A boolean result on whether the movie is featured (true) or not (false).</td>
 						</tr>
 					   </table>
-				</div>
+				</div> -->
+				<div class="divider"></div>
 				<div>
+					<h2 class = "db-name">db.directors</h2>
 					<h3>Director(s)</h3>
 					<table class = "documentation-table">
 						<tr>
@@ -170,7 +173,7 @@
 						</tr>
 						<tr>
 						  <td>Get movie's director(s).</td>
-						  <td>/Movies/:Directors</td>
+						  <td>/Movies/:Director</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>
@@ -178,7 +181,7 @@
 							<br> <br>
 							<div class="json-object">
 							{ <br>
-							   &emsp;directors: [<br>
+							   &emsp;director: [<br>
 							   &emsp;&emsp;{<br>
 								   &emsp;&emsp;&emsp;_id: ObjectId("1028432"),<br>
 								   &emsp;&emsp;&emsp;Name: "Bo Burnham",<br>
@@ -334,7 +337,9 @@
 						</tr>
 					   </table>
 				</div> -->
+				<div class="divider"></div>
 				<div>
+					<h2 class = "db-name">db.genres</h2>
 					<h3>Genres</h3>
 					<table class = "documentation-table">
 						<tr>
@@ -345,8 +350,8 @@
 						  <th>Response Body Data Format</th>
 						</tr>
 						<tr>
-						  <td>Get a movie's theatrical poster image.</td>
-						  <td>/genres</td>
+						  <td>Return data about a genre by name.</td>
+						  <td>/genres/:Title</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td><div class="left-align">An array containing JSON objects holding data about potential genres structured like:
@@ -371,15 +376,15 @@
 						  <th>Response Body Data Format</th>
 						</tr>
 						<tr>
-						  <td>Get a genre.</td>
-						  <td>/genres/:genre</td>
+						  <td>Get a genre by title.</td>
+						  <td>/genres/:Title</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>A string containing the genre name.</td>
 						</tr>
 					   </table>
 				</div>
-				<div>
+				<!-- <div>
 					<h3>Genre Names</h3>
 					<table class = "documentation-table">
 						<tr>
@@ -395,6 +400,134 @@
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>A string containing the description of the requested genre.</td>
+						</tr>
+					   </table>
+				</div> -->
+				<div class="divider"></div>
+				<div>
+					<h2 class = "db-name">db.users</h2>
+					<h3>Create a New User</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Allow a New User to Register</td>
+						  <td>/users</td>
+						  <td>POST</td>
+						  <td>A string containing the user's desired new Username</td>
+						  <td>
+							<div class="left-align">A JSON object creating sign-up information, structured like:
+							<br> <br>
+							<div class="json-object">
+							   user: {<br>
+								   &emsp;Username: "movielover123",<br>
+									   &emsp;Password: "UltraS3cureP@ssw0rd!",<br>
+									   &emsp;Email: "exampleemail@provider.com",<br>
+									   &emsp;Birthday: 2001-10-14,<br>
+						   } </div>
+						   </div>
+						</td>
+						</tr>
+					   </table>
+				<h3>Update an Existing User</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Allow a Existing Users to update their information by username.</td>
+						  <td>/users/:Username</td>
+						  <td>PUT</td>
+						  <td>
+							<div class="left-align">A JSON object containing updated information, structured like:
+							<br> <br>
+							<div class="json-object">
+							   user: {<br>
+								   &emsp;Username: "movielover123",<br>
+									   &emsp;Password: "UltraS3cureP@ssw0rd!",<br>
+									   &emsp;Email: "exampleemail@provider.com",<br>
+									   &emsp;Birthday: 2001-10-14,<br>
+						   } </div>
+						   </div>
+						</td>
+						  <td>
+							None
+						</td>
+						</tr>
+					   </table>
+					   <h3>Add a movie to Favorites List</h3>
+					   <table class = "documentation-table">
+						   <tr>
+							<th>Request</th>
+							<th>URL</th>
+							<th>HTTP Method</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						   </tr>
+						   <tr>
+							<td>Allow an Existing User to add a movie to their Favorites list.</td>
+							<td>/users/:Username/movies/:MovieID</td>
+							<td>POST</td>
+							<td>
+							   A push of the selected MovieID from the movies database to the their list of favorites.
+							 </div>
+						   </td>
+							<td>
+								User receives a confirmation that the task was completed successfully/unsuccessfully.
+						   </td>
+						   </tr>
+						 </table>
+						 <h3>Remove a movie to Favorites List</h3>
+					   <table class = "documentation-table">
+						   <tr>
+							<th>Request</th>
+							<th>URL</th>
+							<th>HTTP Method</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						   </tr>
+						   <tr>
+							<td>Allow an Existing User to remove a movie to their Favorites list.</td>
+							<td>/users/:Username/movies/:MovieID</td>
+							<td>PUT</td>
+							<td>
+								A string containing the user's username and another string containing the MovieID.
+						   </td>
+							<td>
+								User receives a confirmation that the task was completed successfully/unsuccessfully.
+						   </td>
+						   </tr>
+						 </table>
+						 <h3>Delete an Existing User's Account</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Allow a Existing Users to delete their account by username.</td>
+						  <td>/users/:Username'</td>
+						  <td>DELETE</td>
+						  <td>
+							A string containing the user's username.
+						   } </div>
+						   </div>
+						</td>
+						  <td>
+							User receives a confirmation that the task was completed successfully/unsuccessfully.
+						</td>
 						</tr>
 					   </table>
 				</div>

@@ -95,3 +95,16 @@ main{
 	color:dodgerblue;
 	font-style: italic;
 }
+
+.db-name{
+	font-style: italic;
+}
+
+.divider{
+	width: 100%;
+	border-bottom: 1px solid lightgray;
+	margin-top: 50px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 50px;
+}
