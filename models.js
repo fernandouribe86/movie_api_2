@@ -19,7 +19,7 @@ let userSchema = mongoose.Schema({
 });
 
 let genreSchema = mongoose.Schema({
-	Title: String,
+	Name: String,
 	Description: String
 });
 

@@ -10,7 +10,7 @@
 			<header>
 				<div>
 				<h1>DOCUMENTATION </h1>
-				<p>API documentation for Fernando's myFlix</p>
+				<p>API documentation for Fernando's myFlix Mongodb</p>
 				</div>
 				<nav>
 					<ul>
@@ -20,7 +20,415 @@
 				</nav>
 			</header>
 			<main>
-				<h2>URL Endpoints</h2>
+				<div>
+					<h2 class = "db-name">db.movies</h2>
+					<div class = "endpoint-header">
+						<div class = "method method-get">GET</div> <span class = "url-span">/movies </span class="request">Description: Returns a list of movies.<span></span>
+					</div>
+					<table class = "documentation-table-get">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>None</td>
+							<td>None</td>
+							<td>
+								<div class="left-align">(Code 201) A JSON object holding an array containing data about movies, structured like:
+								<br> <br>
+								<div class="json-object">
+									[{ <br>
+										&emsp;_id: ObjectId("56789"), <br>
+										&emsp;Title: 'Star Wars',<br>
+										&emsp;Director: [<br>
+										&emsp;&emsp;{<br>
+											&emsp;&emsp;&emsp;_id: ObjectId("456387"),<br>
+											&emsp;&emsp;&emsp;Name: "George Lucas",<br>
+												&emsp;&emsp;&emsp;Bio: "A short bio.",<br>
+												&emsp;&emsp;&emsp;Birth: "1951",<br>
+												&emsp;&emsp;&emsp;Death: "",<br>
+												&emsp;&emsp;&emsp;&emsp;}<br>
+												&emsp;&emsp;&emsp;}],<br>
+												&emsp;Description: "A brief description",<br>
+												&emsp;Genres: [ObjectId("465787"), ObjectId("4657864")],<br>
+												&emsp;ImagePath: "assets/sw.jpg",<br>
+												&emsp;Actors: [ObjectId("2341234")]
+												&emsp;Featured: true<br>
+									}, <br>
+								{ <br>
+								   &emsp;_id: ObjectId("123456"), <br>
+								   &emsp;Title: 'INSIDE',<br>
+								   &emsp;Director: [<br>
+								   &emsp;&emsp;{<br>
+									   &emsp;&emsp;&emsp;_id: ObjectId("1028432"),<br>
+									   &emsp;&emsp;&emsp;Name: "Bo Burnham",<br>
+										   &emsp;&emsp;&emsp;Bio: "A short bio.",<br>
+										   &emsp;&emsp;&emsp;Birth: "1990",<br>
+										   &emsp;&emsp;&emsp;Death: "2030",<br>
+										   &emsp;&emsp;&emsp;&emsp;}<br>
+										   &emsp;&emsp;&emsp;}],<br>
+										   &emsp;Description: "A brief description",<br>
+										   &emsp;Genres: [ObjectId("10283432"), ObjectId("10283235")],<br>
+										   &emsp;ImagePath: "assets/bo.jpg",<br>
+										   &emsp;Actors: [ObjectId("2341234")]
+										   &emsp;Featured: false<br>
+							   }] </div>
+							   </div>
+							</td>
+						</tr>
+					</table>
+					<div class = "endpoint-header">
+						<div class = "method method-get">GET</div> <span class = "url-span">/movies/:Title </span class="request">Description: Returns a single movie by Title.<span></span>
+					</div>
+					<table class = "documentation-table-get">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>Movie Title ("Title")</td>
+							<td>A string containing the requested movie's title (i.e. "INSIDE").</td>
+							<td>
+								<div class="left-align">(Code 201) A JSON object holding data about a single movie, structured like:
+								<br> <br>
+								<div class="json-object">
+								{ <br>
+								   &emsp;_id: ObjectId("123456"), <br>
+								   &emsp;Title: 'INSIDE',<br>
+								   &emsp;Director: [<br>
+								   &emsp;&emsp;{<br>
+									   &emsp;&emsp;&emsp;_id: ObjectId("1028432"),<br>
+									   &emsp;&emsp;&emsp;Name: "Bo Burnham",<br>
+										   &emsp;&emsp;&emsp;Bio: "A short bio.",<br>
+										   &emsp;&emsp;&emsp;Birth: "1990",<br>
+										   &emsp;&emsp;&emsp;Death: "2030",<br>
+										   &emsp;&emsp;&emsp;&emsp;}<br>
+										   &emsp;&emsp;&emsp;}],<br>
+										   &emsp;Description: "A brief description",<br>
+										   &emsp;Genres: [ObjectId("10283432"), ObjectId("10283235")],<br>
+										   &emsp;ImagePath: "assets/bo.jpg",<br>
+										   &emsp;Actors: [ObjectId("2341234")]
+										   &emsp;Featured: true<br>
+							   } </div>
+							   </div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="divider"></div>
+				<div>
+					<h2 class = "db-name">db.genres</h2>
+					<div class = "endpoint-header">
+						<div class = "method method-get">GET</div> <span class = "url-span">/genres </span class="request">Description: Returns a list of genres.<span></span>
+					</div>
+					<table class = "documentation-table-get">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>None</td>
+							<td>None</td>
+							<td>
+								<div class="left-align">(Code 201) A JSON object holding an array containing data about genres, structured like:
+								<br> <br>
+								<div class="json-object">
+									[{ <br>
+										&emsp;Name: "Animation.",<br>
+										&emsp;Description: "A brief genre description."<br>
+										&emsp;<br>
+									}, <br>
+								{ <br>
+									&emsp;Name: "Adventure.",<br>
+									&emsp;Description: "A brief genre description."<br>
+									&emsp;<br>
+								}] </div>
+							   </div>
+							</td>
+						</tr>
+					</table>
+					<div class = "endpoint-header">
+						<div class = "method method-get">GET</div> <span class = "url-span">/genres/:Name </span class="request">Description: Genre a single movie by Name.<span></span>
+					</div>
+					<table class = "documentation-table-get">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>Genre name ("Name")</td>
+							<td>A string containing the requested genre's name (i.e. "Comedy").</td>
+							<td>
+								<div class="left-align">(Code 201) A JSON object holding data about a single genre, structured like:
+								<br> <br>
+								<div class="json-object">
+									{ <br>
+										&emsp;Name: "Comedy.",<br>
+										&emsp;Description: "A brief genre description."<br>
+										&emsp;<br>
+									} </div>
+							   </div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="divider"></div>
+				<div>
+					<h2 class = "db-name">db.directors</h2>
+					<div class = "endpoint-header">
+						<div class = "method method-get">GET</div> <span class = "url-span">/directors </span class="request">Description: Returns a list of all directors.<span></span>
+					</div>
+					<table class = "documentation-table-get">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>None</td>
+							<td>None</td>
+							<td>
+								<div class="left-align">(Code 201) A JSON object holding an array containing data about directors, structured like:
+								<br> <br>
+								<div class="json-object">
+									[{<br>
+										&emsp;&emsp;&emsp;_id: ObjectId("1028432"),<br>
+										&emsp;&emsp;&emsp;Name: "George Lucas",<br>
+											&emsp;&emsp;&emsp;Bio: "A short bio.",<br>
+											&emsp;&emsp;&emsp;Birth: "1990",<br>
+											&emsp;&emsp;&emsp;Death: "2030"<br>
+											&emsp;},<br>
+											&emsp;{<br>
+										&emsp;&emsp;&emsp;_id: ObjectId("1028432"),<br>
+										&emsp;&emsp;&emsp;Name: "Bo Burnham",<br>
+											&emsp;&emsp;&emsp;Bio: "A short bio.",<br>
+											&emsp;&emsp;&emsp;Birth: "1990",<br>
+											&emsp;&emsp;&emsp;Death: "2030"<br>
+								}] </div>
+							   </div>
+							</td>
+						</tr>
+					</table>
+					<div class = "endpoint-header">
+						<div class = "method method-get">GET</div> <span class = "url-span">/directors/:Name </span class="request">Description: Returns a Director movie by Name.<span></span>
+					</div>
+					<table class = "documentation-table-get">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>Director's name ("Name")</td>
+							<td>A string containing the requested Director's name (i.e. "George Lucas").</td>
+							<td>
+								<div class="left-align">(Code 201) A JSON object holding data about a single director, structured like:
+								<br> <br>
+								<div class="json-object">
+									 {<br>
+											&emsp;&emsp;&emsp;_id: ObjectId("1028432"),<br>
+											&emsp;&emsp;&emsp;Name: "Bo Burnham",<br>
+												&emsp;&emsp;&emsp;Bio: "A short bio.",<br>
+												&emsp;&emsp;&emsp;Birth: "1990",<br>
+												&emsp;&emsp;&emsp;Death: "2030"<br>
+									} </div>
+							   </div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="divider"></div>
+				<h2 class = "db-name">db.users</h2>
+					<div class = "endpoint-header">
+						<div class = "method method-get">GET</div> <span class = "url-span">/users </span class="request">Description: Returns a list of users.<span></span>
+					</div>
+					<table class = "documentation-table-get">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>None</td>
+							<td>None</td>
+							<td>
+								<div class="left-align">(Code 201) A JSON object holding an array containing data about users, structured like:
+								<br> <br>
+								<div class="json-object">
+									[{ <br>
+										&emsp;_id: ObjectId("56789"), <br>
+										&emsp;Username: 'AppleBottomJeans',<br>
+										&emsp;Email: 'BootsWthe4@domain.com'<br>
+										&emsp;Password: 'Wh0leCLu8L00k!ng'<br>
+										&emsp;Birthday: '2001-01-01'<br>
+										&emsp;Favorites: [ObjectID("5465465"), ObjectID("546413"] <br>
+										&emsp;},<br>
+										{<br>
+											&emsp;_id: ObjectId("132456"), <br>
+										&emsp;Username: 'SheHitDFloor',<br>
+										&emsp;Email: 'NextThingYouKnow@domain.com',<br>
+										&emsp;Password: 'Sh@wtyG0tL0w!',<br>
+										&emsp;Birthday: '2011-11-11',<br>
+										&emsp;Favorites: [ObjectID("123414"), ObjectID("456151"]<br>
+										&emsp;}] </div>
+							   </div>
+							</td>
+						</tr>
+					</table>
+					<div class = "endpoint-header">
+						<div class = "method method-get">GET</div> <span class = "url-span">/users/:Username </span class="request">Description: Returns a single User by Username.<span></span>
+					</div>
+					<table class = "documentation-table-get">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>A user's Username ("Username")</td>
+							<td>A string containing the requested user's Username (i.e. "SheHitDFloor").</td>
+							<td>
+								<div class="left-align">(Code 201) A JSON object holding data about a single user, structured like:
+								<br> <br>
+								<div class="json-object">
+									{<br>
+										&emsp;_id: ObjectId("132456"), <br>
+									&emsp;Username: 'SheHitDFloor',<br>
+									&emsp;Email: 'NextThingYouKnow@domain.com',<br>
+									&emsp;Password: 'Sh@wtyG0tL0w!',<br>
+									&emsp;Birthday: '2011-11-11',<br>
+									&emsp;Favorites: [ObjectID("123414"), ObjectID("456151"]<br>
+									&emsp;} </div>
+							   </div>
+							</td>
+						</tr>
+					</table>
+					<div class = "endpoint-header">
+						<div class = "method method-post">POST</div> <span class = "url-span">/users </span class="request">Description: Create a new user.<span></span>
+					</div>
+					<table class = "documentation-table-post">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>A user's desired Username ("Username") to verify if it is available.</td>
+							<td>
+								<div class="left-align">A JSON object holding data about a single new user, structured like:
+									<br> <br>
+									<div class="json-object">
+										{<br>
+										&emsp;Username: 'BaggySweatPants',<span class="required"> *required</span><br>
+										&emsp;Email: 'ReeboksWDStraps@domain.com',<span class="required"> *required</span><br>
+										&emsp;Password: '2TheWind0w!',<span class="required"> *required</span><br>
+										&emsp;Birthday: '2004-06-08'<span class="required"> *required</span><br>
+										&emsp;} </div>
+							</td>
+							<td>(Code 201) A confirmation that the user was successfully created.</td>
+						</tr>
+					</table>
+					<div class = "endpoint-header">
+						<div class = "method method-put">PUT</div> <span class = "url-span">/users/:Username </span class="request">Description: Allow a user to update their information.<span></span>
+					</div>
+					<table class = "documentation-table-put">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>The user's username ("Username").</td>
+							<td>
+								<div class="left-align">A JSON object holding data about a single new user, structured like:
+									<br> <br>
+									<div class="json-object">
+										{<br>
+										&emsp;Username: 'BaggySweatPants456',<span class="required"> *required</span><br>
+										&emsp;Email: 'ReeboksWDStraps@domain.com',<span class="required"> *required</span><br>
+										&emsp;Password: '2TheWind0w456!',<span class="required"> *required</span><br>
+										&emsp;Birthday: '2004-06-11'<span class="required"> *required</span><br>
+										&emsp;} </div>
+							</td>
+							<td>A confirmation that the user's information was updated successfully.</td>
+						</tr>
+					</table>
+					<div class = "endpoint-header">
+						<div class = "method method-post">POST</div> <span class = "url-span">/users/:Username/movies/:MovieID </span class="request">Description: Allow a user to add a movie to their Favorites.<span></span>
+					</div>
+					<table class = "documentation-table-post">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>A user's Username and a user's desired Movie by ID.</td>
+							<td>A string containing a user's Username and a separate string containing the movie's ID.</td>
+							<td>A confirmation that the movie was successfully added to the user's account (updatedUser).</td>
+						</tr>
+					</table>
+					<div class = "endpoint-header">
+						<div class = "method method-put">PUT</div> <span class = "url-span">/users/:Username </span class="request">Description: Allow a user to update their information.<span></span>
+					</div>
+					<table class = "documentation-table-put">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>The user's username ("Username").</td>
+							<td>
+								<div class="left-align">A JSON object holding data about a single new user, structured like:
+									<br> <br>
+									<div class="json-object">
+										{<br>
+										&emsp;Username: 'BaggySweatPants456',<span class="required"> *required</span><br>
+										&emsp;Email: 'ReeboksWDStraps@domain.com',<span class="required"> *required</span><br>
+										&emsp;Password: '2TheWind0w456!',<span class="required"> *required</span><br>
+										&emsp;Birthday: '2004-06-11'<span class="required"> *required</span><br>
+										&emsp;} </div>
+							</td>
+							<td>A confirmation that the user's information was updated successfully.</td>
+						</tr>
+					</table>
+					<div class = "endpoint-header">
+						<div class = "method method-delete">DELETE</div> <span class = "url-span">/users/:Username/movies/:MovieID </span class="request">Description: Allow a user to remove a movie to their Favorites.<span></span>
+					</div>
+					<table class = "documentation-table-delete">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>A user's Username and a user's desired Movie by ID.</td>
+							<td>A string containing a user's Username and a separate string containing the movie's ID.</td>
+							<td>A confirmation that the movie was successfully removed to the user's account (updatedUser).</td>
+						</tr>
+					</table>
+					<div class = "endpoint-header">
+						<div class = "method method-delete">DELETE</div> <span class = "url-span">/users/:Username </span class="request">Description: Allow a user to delete their account by Username.<span></span>
+					</div>
+					<table class = "documentation-table-delete">
+						<tr>
+							<th>Parameters</th>
+							<th>Request Body Data Format</th>
+							<th>Response Body Data Format</th>
+						</tr>
+						<tr>
+							<td>A user's Username.</td>
+							<td>A string containing a user's Username.</td>
+							<td>(Code 200) A confirmation that the user's information was successfully deleted. <br> (Code 400) A user with that information was not found and therefore not deleted.</td>
+						</tr>
+					</table>
+				</div>
+				<!-- <h2>URL Endpoints</h2>
 				<div>
 					<h2 class="db-name">db.movies</h2>
 					<h3>Movies List</h3>
@@ -64,8 +472,7 @@
 						</tr>
 					   </table>
 				</div>
-				<!-- <div>
-					<h3>ID</h3>
+				<h3>Director(s)</h3>
 					<table class = "documentation-table">
 						<tr>
 						  <th>Request</th>
@@ -75,14 +482,28 @@
 						  <th>Response Body Data Format</th>
 						</tr>
 						<tr>
-						  <td>Return a movie ID on search</td>
-						  <td>/movies/_id</td>
+						  <td>Get movie's director(s).</td>
+						  <td>/movies/:Director</td>
 						  <td>GET</td>
 						  <td>None</td>
-						  <td>An alpha-numberic database code associated with the movie.</td>
+						  <td>
+							<div class="left-align">A JSON object holding data about the movie's director(s) in an array, structured like:
+							<br> <br>
+							<div class="json-object">
+							{<br>
+							   &emsp;director: [{<br>
+								   &emsp;&emsp;&emsp;_id: ObjectId("1028432"),<br>
+								   &emsp;&emsp;&emsp;Name: "Bo Burnham",<br>
+									   &emsp;&emsp;&emsp;Bio: "A short bio.",<br>
+									   &emsp;&emsp;&emsp;Birth: "1990",<br>
+									   &emsp;&emsp;&emsp;Death: "2030",<br>
+									   &emsp;&emsp;&emsp;}]<br>
+						   } </div>
+						   </div>
+						</td>
 						</tr>
 					   </table>
-				</div> -->
+				</div>
 				<div>
 					<h3>Title</h3>
 					<table class = "documentation-table">
@@ -102,7 +523,7 @@
 						</tr>
 					   </table>
 				</div>
-				<!-- <div>
+				<div>
 					<h3>Movie Description</h3>
 					<table class = "documentation-table">
 						<tr>
@@ -158,7 +579,7 @@
 						  <td>A boolean result on whether the movie is featured (true) or not (false).</td>
 						</tr>
 					   </table>
-				</div> -->
+				</div>
 				<div class="divider"></div>
 				<div>
 					<h2 class = "db-name">db.directors</h2>
@@ -173,11 +594,43 @@
 						</tr>
 						<tr>
 						  <td>Get movie's director(s).</td>
-						  <td>/Movies/:Director</td>
+						  <td>/directors</td>
 						  <td>GET</td>
 						  <td>None</td>
 						  <td>
-							<div class="left-align">A JSON object holding data about the movie's director(s) in an array, structured like:
+							<div class="left-align">A JSON object holding data about all director(s), structured like:
+							<br> <br>
+							<div class="json-object">
+							{ <br>
+							   &emsp;director: [<br>
+							   &emsp;&emsp;{<br>
+								   &emsp;&emsp;&emsp;_id: ObjectId("1028432"),<br>
+								   &emsp;&emsp;&emsp;Name: "Bo Burnham",<br>
+									   &emsp;&emsp;&emsp;Bio: "A short bio.",<br>
+									   &emsp;&emsp;&emsp;Birth: "1990",<br>
+									   &emsp;&emsp;&emsp;Death: "2030",<br>
+									   &emsp;&emsp;&emsp;<br>
+						   } </div>
+						   </div>
+						</td>
+						</tr>
+					   </table>
+					   <h3>Director by Name</h3>
+					<table class = "documentation-table">
+						<tr>
+						  <th>Request</th>
+						  <th>URL</th>
+						  <th>HTTP Method</th>
+						  <th>Request Body Data Format</th>
+						  <th>Response Body Data Format</th>
+						</tr>
+						<tr>
+						  <td>Get director's information by name.</td>
+						  <td>/directors/:Name</td>
+						  <td>GET</td>
+						  <td>None</td>
+						  <td>
+							<div class="left-align">A JSON object holding data about all director(s), structured like:
 							<br> <br>
 							<div class="json-object">
 							{ <br>
@@ -336,7 +789,7 @@
 						  <td>A string containing the URL or relative path containing the director's image in .jpg (or .jpeg) format. </td>
 						</tr>
 					   </table>
-				</div> -->
+				</div> 
 				<div class="divider"></div>
 				<div>
 					<h2 class = "db-name">db.genres</h2>
@@ -384,7 +837,7 @@
 						</tr>
 					   </table>
 				</div>
-				<!-- <div>
+				<div>
 					<h3>Genre Names</h3>
 					<table class = "documentation-table">
 						<tr>
@@ -402,7 +855,7 @@
 						  <td>A string containing the description of the requested genre.</td>
 						</tr>
 					   </table>
-				</div> -->
+				</div> 
 				<div class="divider"></div>
 				<div>
 					<h2 class = "db-name">db.users</h2>
@@ -530,10 +983,10 @@
 						</td>
 						</tr>
 					   </table>
-				</div>
+				</div> -->
 			</main>
 			<footer>
-				<p>(c) myFlix, 2022.</p>
+				<p>(c) myFlixdb, 2022.</p>
 			</footer>
 	</div>
 	</body>

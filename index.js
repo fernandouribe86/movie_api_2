@@ -11,6 +11,8 @@ const Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
+const Directors = Models.Director;
+const Genres = Models.Genre;
 
 mongoose.connect('mongodb://localhost:27017/myFlixdb')
 
@@ -28,7 +30,7 @@ app.get('/', (req, res) => {
 
 // 1. Get a list of ALL movies to the user
 app.get('/movies', (req, res) => {
-	Users.find()
+	Movies.find()
 		.then ((movies) => {
 			res.status(201).json(movies);
 		})
@@ -40,7 +42,7 @@ app.get('/movies', (req, res) => {
 
 // 2. Get data about a single movie by the title to the user
 app.get('/movies/:Title', (req, res) => {
-	Users.findOne({ Movie: req.params.Movie })
+	Movies.findOne({ Title: req.params.Title})
 		.then((movie) => {
 			res.json(movie);
 		})
@@ -50,9 +52,21 @@ app.get('/movies/:Title', (req, res) => {
 		});
 });
 
+// Get a list of ALL Genres to the user
+app.get('/genres', (req, res) => {
+	Genres.find()
+		.then ((genres) => {
+			res.status(201).json(genres);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send('Error: '+ err);
+		});
+});
+
 // 3. Return data about a genre by name/title
-app.get('/genres/:Title', (req, res) => {
-	Users.findOne({ Genre: req.params.Genre })
+app.get('/genres/:Name', (req, res) => {
+	Genres.findOne({ Name: req.params.Name})
 		.then((genre) => {
 			res.json(genre);
 		})
@@ -62,11 +76,47 @@ app.get('/genres/:Title', (req, res) => {
 		});
 });
 
+// Get a list of ALL Directors to the user
+app.get('/directors', (req, res) => {
+	Directors.find()
+		.then ((directors) => {
+			res.status(201).json(directors);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send('Error: '+ err);
+		});
+});
+
 // 4. Return data about a director by Name
 app.get('/directors/:Name', (req, res) => {
-	Users.findOne({ Genre: req.params.Director })
+	Directors.findOne({ Name: req.params.Name })
 		.then((director) => {
 			res.json(director);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send('Error: ' + err);
+		});
+});
+
+// Get list of all users
+app.get('/users', (req, res) => {
+	Users.find()
+		.then ((users) => {
+			res.status(201).json(users);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send('Error: '+ err);
+		});
+});
+
+// Get user info by Username
+app.get('/users/:Username', (req, res) => {
+	Directors.findOne({ Username: req.params.Username })
+		.then((user) => {
+			res.json(user);
 		})
 		.catch((err) => {
 			console.error(err);
@@ -98,7 +148,7 @@ app.post('/users', (req, res) => {
 				.then((user) => { res.status(201).json(user)})
 			.catch((error) => {
 				console.error(error);
-				res.status(500).send('Error:' + error);
+				res.status(500).send('Error: ' + error);
 			})
 		}
 		})
@@ -108,8 +158,21 @@ app.post('/users', (req, res) => {
 		});
 });
 
+
+// Get user info by Username
+app.get('/users/:Username', (req, res) => {
+	Users.findOne({ Username: req.params.Username })
+		.then((user) => {
+			res.json(user);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send('Error: ' + err);
+		});
+});
+
 // 6. Allow users to update their user info
-/* We'll ecpect JSON in this format: 
+/* We'll expect JSON in this format: 
 {
 	Username: String,
 	(required)
@@ -156,7 +219,7 @@ app.post( '/users/:Username/movies/:MovieID', (req, res) => {
 });
 
 // 8. Allow users to remove a movie from their list of favorites
-app.delete('/users/:Username/movies/:MovieID', (req, res) => {
+app.delete( '/users/:Username/movies/:MovieID', (req, res) => {
 	Users.findOneAndUpdate({ Username: req.params.Username}, {
 		$pull: { Favorites: req.params.MovieID }
 	},
