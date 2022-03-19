@@ -48,10 +48,10 @@ const res = require('express/lib/response');
 const morgan = require('morgan');
 app.use(morgan('common'));
 
-// //GET WELCOME MESSAGE 
-// app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-// 	res.send('Welcome to my favorite movies app!');
-// });
+//GET WELCOME MESSAGE 
+app.get('/', (req, res) => {
+	res.send('Welcome to my favorite movies app!');
+});
 
 // 1. Get a list of ALL movies to the user
 app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
