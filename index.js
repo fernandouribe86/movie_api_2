@@ -39,7 +39,8 @@ const Users = Models.User;
 const Directors = Models.Director;
 const Genres = Models.Genre;
 
-mongoose.connect('mongodb://localhost:27017/myFlixdb')
+// mongoose.connect('mongodb://localhost:27017/myFlixdb')
+mongoose.connect(process.env.CONNECTION_URI)
 
 const { urlencoded } = require('express');
 const res = require('express/lib/response');
