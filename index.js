@@ -50,9 +50,9 @@ const morgan = require('morgan');
 app.use(morgan('common'));
 
 //GET WELCOME MESSAGE 
-app.get('/', (req, res) => {
-	res.send('Welcome to my favorite movies app!');
-});
+app.get("/", (req, res) => {
+	res.send("Welcome to myFlix");
+   });
 
 // 1. Get a list of ALL movies to the user
 app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
