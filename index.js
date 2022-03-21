@@ -40,9 +40,10 @@ const Directors = Models.Director;
 const Genres = Models.Genre;
 
 // mongoose.connect('mongodb://localhost:27017/myFlixdb')
-mongoose.connect(process.env.CONNECTION123, { useNewUrlParser: true, useUnifiedTopology: true }))
+mongoose.connect(process.env.CONNECTION123);
 
 const { urlencoded } = require('express');
+
 const res = require('express/lib/response');
 
 //USE MORGAN MIDDLEWARE LIBRARY
