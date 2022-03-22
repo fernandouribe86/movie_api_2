@@ -40,7 +40,7 @@ const Directors = Models.Director;
 const Genres = Models.Genre;
 
 // mongoose.connect('mongodb://localhost:27017/myFlixdb')
-mongoose.connect(  'mongodb+srv://ZenithAdmin:Br1dgegAte@zenith.vi71m.mongodb.net/myFlixDB?retryWrites=true&w=majority', {useNewUrlParser: true });
+mongoose.connect(  process.env.CONNECTION_URI, {useNewUrlParser: true });
 
 const { urlencoded } = require('express');
 
