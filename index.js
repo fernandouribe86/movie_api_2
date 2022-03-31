@@ -56,16 +56,28 @@ app.get("/", (req, res) => {
    });
 
 // 1. Get a list of ALL movies to the user
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
-	Movies.find()
-	  .then((movies) => {
-	    res.status(201).json(movies);
-	  })
-	  .catch((error) => {
-	    console.error(error);
-	    res.status(500).send('Error: ' + error);
-	  });
-   });
+// app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+// 	Movies.find()
+// 	  .then((movies) => {
+// 	    res.status(201).json(movies);
+// 	  })
+// 	  .catch((error) => {
+// 	    console.error(error);
+// 	    res.status(500).send('Error: ' + error);
+// 	  });
+//    });
+//TEMPORARY CODE
+app.get("/movies", function (req, res) {
+  Movies.find()
+    .then(function (movies) {
+      res.status(201).json(movies);
+    })
+    .catch(function (error) {
+      console.error(error);
+      res.status(500).send("Error: " + error);
+    });
+});
+//END TEMPORARY CODE
 
 // 2. Get data about a single movie by the title to the user
 app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
