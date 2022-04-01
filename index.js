@@ -116,7 +116,7 @@ app.get('/genres/:Name', passport.authenticate('jwt', { session: false }), (req,
 });
 
 // Get a list of ALL Directors to the user
-app.get('/directors', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/directors' /*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
 	Directors.find()
 		.then ((directors) => {
 			res.status(201).json(directors);
