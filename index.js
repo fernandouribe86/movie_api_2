@@ -55,29 +55,19 @@ app.get("/", (req, res) => {
 	res.send("Welcome to myFlix");
    });
 
-// 1. Get a list of ALL movies to the user
-// app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
-// 	Movies.find()
-// 	  .then((movies) => {
-// 	    res.status(201).json(movies);
-// 	  })
-// 	  .catch((error) => {
-// 	    console.error(error);
-// 	    res.status(500).send('Error: ' + error);
-// 	  });
-//    });
-//TEMPORARY CODE
-app.get('/movies', function (req, res) {
-  Movies.find()
-    .then(function (movies) {
-      res.status(201).json(movies);
-    })
-    .catch(function (error) {
-      console.error(error);
-      res.status(500).send("Error: " + error);
-    });
-});
-//END TEMPORARY CODE
+1. Get a list of ALL movies to the user
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+	Movies.find()
+	  .then((movies) => {
+	    res.status(201).json(movies);
+	  })
+	  .catch((error) => {
+	    console.error(error);
+	    res.status(500).send('Error: ' + error);
+	  });
+   });
+
+
 
 // 2. Get data about a single movie by the title to the user
 app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -92,7 +82,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req
 });
 
 // Get a list of ALL Genres to the user
-app.get('/genres'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
+app.get('/genres', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Genres.find()
 		.then ((genres) => {
 			res.status(201).json(genres);
@@ -104,7 +94,7 @@ app.get('/genres'/*, passport.authenticate('jwt', { session: false })*/, (req, r
 });
 
 // 3. Return data about a genre by name/title
-app.get('/genres/:Name'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
+app.get('/genres/:Name', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Genres.findOne({ Name: req.params.Name})
 		.then((genre) => {
 			res.json(genre);
@@ -116,7 +106,7 @@ app.get('/genres/:Name'/*, passport.authenticate('jwt', { session: false })*/, (
 });
 
 // Get a list of ALL Directors to the user
-app.get('/directors' /*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
+app.get('/directors' , passport.authenticate('jwt', { session: false }), (req, res) => {
 	Directors.find()
 		.then ((directors) => {
 			res.status(201).json(directors);
@@ -128,7 +118,7 @@ app.get('/directors' /*, passport.authenticate('jwt', { session: false })*/, (re
 });
 
 // 4. Return data about a director by Name
-app.get('/directors/:Name'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
+app.get('/directors/:Name', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Directors.findOne({ Name: req.params.Name })
 		.then((director) => {
 			res.json(director);
@@ -235,7 +225,7 @@ app.post('/users',
 	(required)
 	Birthday: Date
 }*/
-app.put('/users/:Username'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Users.findOneAndUpdate({ Username: req.params.Username}, { $set:
 		{
 			Username: req.body.Username,
