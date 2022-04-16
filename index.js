@@ -55,7 +55,7 @@ app.get("/", (req, res) => {
 	res.send("Welcome to myFlix");
    });
 
-1. Get a list of ALL movies to the user
+// 1. Get a list of ALL movies to the user
 app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Movies.find()
 	  .then((movies) => {
