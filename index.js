@@ -82,7 +82,7 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req
 });
 
 // Get a list of ALL Genres to the user
-app.get('/genres', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/genres'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
 	Genres.find()
 		.then ((genres) => {
 			res.status(201).json(genres);
