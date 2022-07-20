@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const {check, validationResult } = require('express-validator');
 
-let allowedOrigins = ['http://localhost:8080', 'http://fernandouribe.com', 'http://localhost:1234'];
+let allowedOrigins = ['http://localhost:8080', 'http://fernandouribe.com', 'http://localhost:1234', 'https://steady-raindrop-99ccc8.netlify.app', 'http://localhost:62974','http://localhost:4200', 'https://myflix-angular.netlify.app'];
 
 app.use(cors( {
 	origin: (origin, callback) => {
@@ -50,12 +50,25 @@ const res = require('express/lib/response');
 const morgan = require('morgan');
 app.use(morgan('common'));
 
-//GET WELCOME MESSAGE 
+/* *** START OF ENPOINT DEFINITION
+* *****
+* */
+
+/**
+ * GET: Welcome message
+ */ 
 app.get("/", (req, res) => {
 	res.send("Welcome to myFlix");
    });
 
-// 1. Get a list of ALL movies to the user
+/**
+ * GET: Returns a list of ALL movies to the user
+ * Request body: Bearer token
+ * @returns array of movie objects
+ * @requires passport
+ */
+
+
 app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Movies.find()
 	  .then((movies) => {
@@ -69,7 +82,13 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
 
 
 
-// 2. Get data about a single movie by the title to the user
+/**
+ * GET: Returns a single movie to the user by Title
+ * Request body: Bearer token
+ * @returns movie object
+ * @requires passport
+ */
+
 app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
 	Movies.findOne({ Title: req.params.Title})
 		.then((movie) => {
@@ -81,7 +100,13 @@ app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req
 		});
 });
 
-// Get a list of ALL Genres to the user
+/**
+ * GET: Returns a list of ALL genres to the user
+ * Request body: Bearer token
+ * @returns array of genres objects
+ * @requires passport
+ */
+
 app.get('/genres'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
 	Genres.find()
 		.then ((genres) => {
@@ -93,7 +118,13 @@ app.get('/genres'/*, passport.authenticate('jwt', { session: false })*/, (req, r
 		});
 });
 
-// 3. Return data about a genre by name/title
+/**
+ * GET: Returns a single genre's details to the user based on the name of the Genre
+ *  @param genre name
+ * @returns single genre object
+ * @requires passport
+ */
+
 app.get('/genres/:Name'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
 	Genres.findOne({ Name: req.params.Name})
 		.then((genre) => {
@@ -105,7 +136,15 @@ app.get('/genres/:Name'/*, passport.authenticate('jwt', { session: false })*/, (
 		});
 });
 
-// Get a list of ALL Directors to the user
+
+
+/**
+ * GET: Returns a list of ALL directors to the user
+ * Request body: Bearer token
+ * @returns array of directors objects
+ * @requires passport
+ */
+
 app.get('/directors'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
 	Directors.find()
 		.then ((directors) => {
@@ -117,8 +156,15 @@ app.get('/directors'/*, passport.authenticate('jwt', { session: false })*/, (req
 		});
 });
 
-// 4. Return data about a director by Name
-app.get('/directors/:Name', passport.authenticate('jwt', { session: false }), (req, res) => {
+/**
+ * GET: Returns a single director's details to the user based on the name of the director
+ * Request body: Bearer token
+ * @param director's name
+ * @returns single director object
+ * @requires passport
+ */
+
+app.get('/directors/:Name'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
 	Directors.findOne({ Name: req.params.Name })
 		.then((director) => {
 			res.json(director);
@@ -129,38 +175,25 @@ app.get('/directors/:Name', passport.authenticate('jwt', { session: false }), (r
 		});
 });
 
-// // Get list of all users
-// app.get('/users', (req, res) => {
-// 	Users.find()
-// 		.then ((users) => {
-// 			res.status(201).json(users);
-// 		})
-// 		.catch((err) => {
-// 			console.error(err);
-// 			res.status(500).send('Error: '+ err);
-// 		});
-// });
-
-// // Get user info by Username
-// app.get('/users/:Username', (req, res) => {
-// 	Directors.findOne({ Username: req.params.Username })
-// 		.then((user) => {
-// 			res.json(user);
-// 		})
-// 		.catch((err) => {
-// 			console.error(err);
-// 			res.status(500).send('Error: ' + err);
-// 		});
-// });
-
-// 5. Allow a new user to register
-/* We'll expect a JSON in this format:
-{ 
-	ID: Integer,
-	Username: String,
-	Password: String,
-	Birthday: Date
-}*/
+/** POST: Allow a new user to register
+ * Request body:
+ * { 
+	* Username: String, (required)
+	* Password: password, (required)
+	* Email: string, (required)
+	* Birthday: Date
+ * }
+ * @return
+ * { 
+	* _id: string,
+	* Username: String,
+	* Password: hashedPassword,
+	* Email: string,
+	* Birthday: Date,
+	* Favorites: Array,
+ * }
+ * @returns bearer token
+ * */
 app.post('/users', 
 [
 	check('Username', 'Username is required').isLength({min: 5}),
@@ -202,34 +235,51 @@ app.post('/users',
 });
 
 
-// Get user info by Username
-// app.get('/users/:Username', (req, res) => {
-// 	Users.findOne({ Username: req.params.Username })
-// 		.then((user) => {
-// 			res.json(user);
-// 		})
-// 		.catch((err) => {
-// 			console.error(err);
-// 			res.status(500).send('Error: ' + err);
-// 		});
-// });
+/**
+ * GET: get user info by username
+ * Request body: Bearer token
+ * @param username
+ * @returns single user object
+ * @requires passport
+ */
 
-// 6. Allow users to update their user info
-/* We'll expect JSON in this format: 
-{
-	Username: String,
-	(required)
-	Password: String,
-	(required)
-	Email: String,
-	(required)
-	Birthday: Date
-}*/
-app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/users/:Username', (req, res) => {
+	Users.findOne({ Username: req.params.Username })
+		.then((user) => {
+			res.json(user);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send('Error: ' + err);
+		});
+}); 
+
+/** * PUT: Allow an existing user to update their information
+ * Request body:
+ * * { 
+	* Username: String, 
+	* Password: password, (required)
+	* Email: string, 
+	* Birthday: Date
+ * }
+ * @return
+* { 
+	* _id: string,
+	* Username: String,
+	* Password: hashedPassword,
+	* Email: string,
+	* Birthday: Date,
+	* Favorites: Array,
+ * }
+ * @returns bearer token
+ * */
+
+app.put('/users/:Username'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
+	let hashedPassword = Users.hashPassword(req.body.Password);
 	Users.findOneAndUpdate({ Username: req.params.Username}, { $set:
 		{
 			Username: req.body.Username,
-			Password: req.body.Password,
+			Password: hashedPassword,
 			Email: req.body.Email,
 			Birthday: req.body.Birthday
 		}
@@ -245,8 +295,16 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 		});
 });
 
-// 7. Allow users to add a movie to their list of favorites
-app.post( '/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
+/** * POST: Allow a user to add movie to favorites list
+ * @param username
+ * Request body:
+ * * { 
+	* _id
+ * }
+ * @returns success message / error
+ * */
+
+app.post( '/users/:Username/movies/:MovieID'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
 	Users.findOneAndUpdate({ Username: req.params.Username}, {
 		$push: { Favorites: req.params.MovieID }
 	},
@@ -261,8 +319,15 @@ app.post( '/users/:Username/movies/:MovieID', passport.authenticate('jwt', { ses
 	});
 });
 
-// 8. Allow users to remove a movie from their list of favorites
-app.delete( '/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
+/** * DELETE: Allow a user to remove movie to favorites list
+ * @param username
+ * Request body:
+ * * { 
+	* _id: string
+ * }
+ * @returns success message / error
+ * */
+app.delete( '/users/:Username/movies/:MovieID'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
 	Users.findOneAndUpdate({ Username: req.params.Username}, {
 		$pull: { Favorites: req.params.MovieID }
 	},
@@ -277,8 +342,15 @@ app.delete( '/users/:Username/movies/:MovieID', passport.authenticate('jwt', { s
 	});
 });
 
-// 9. Allow existing users to de-register
-app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+/** * DELETE: Allow a user to delete their account
+ * @param username
+ * Request body:
+ * * { 
+	* username: string
+ * }
+ * @returns success message / error
+ * */
+app.delete('/users/:Username'/*, passport.authenticate('jwt', { session: false })*/, (req, res) => {
 	Users.findOneAndRemove({ Username: req.params.Username})
 	.then((user) => {
 		if(!user) {
@@ -292,6 +364,25 @@ app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
 		res.status(500).send('Error: '+ err);
 	});
 });
+
+/**
+ * GET: get user favorites by username
+ * Request body: Bearer token
+ * @param username
+ * @returns single user object
+ * @requires passport
+ */
+
+app.get('/users/:Username/Favorites', (req, res) => {
+	Users.findOne({ Username: req.params.Username })
+		.then((user) => {
+			res.json(user);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send('Error: ' + err);
+		});
+}); 
 
 //USE EXPRESS STATIC CONTENT FROM THE PUBLIC DIR
 app.use(express.static('public'));
